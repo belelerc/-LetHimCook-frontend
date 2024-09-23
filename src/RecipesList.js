@@ -16,7 +16,7 @@ function RecipesList() {
     formData.append('image', selectedFile); // Attach the image file to formData
 
     // Send the image to the backend for ingredient detection
-    axios.post('http://localhost:4000/detect-ingredients', formData, {
+    axios.post('https://dry-savannah-39543-261e658b7fd9.herokuapp.com/detect-ingredients', formData, {
       headers: { 'Content-Type': 'multipart/form-data' } // Set correct headers for file upload
     })
     .then(response => {
@@ -31,7 +31,7 @@ function RecipesList() {
 
   // Function to fetch details of a specific recipe when clicked
   const fetchRecipeDetails = (id) => {
-    axios.get(`http://localhost:4000/recipe/${id}`)
+    axios.get(`https://dry-savannah-39543-261e658b7fd9.herokuapp.com/recipe/${id}`)
       .then(response => {
         setSelectedRecipe(response.data); // Store the fetched recipe details
         setShowModal(true); // Display the modal with recipe details
@@ -53,7 +53,7 @@ function RecipesList() {
   useEffect(() => {
     // Only fetch recipes if there are detected ingredients
     if (detectedIngredients.length > 0) {
-      axios.post('http://localhost:4000/recipes', { ingredients: detectedIngredients })
+      axios.post('https://dry-savannah-39543-261e658b7fd9.herokuapp.com/recipes', { ingredients: detectedIngredients })
         .then(response => {
           setRecipes(response.data); // Update the state with the fetched recipes
         })
