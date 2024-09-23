@@ -1,38 +1,250 @@
+/* Importing a font from Google Fonts to use throughout the app */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Centering the app content */
 .App {
   text-align: center;
 }
 
+/* Setting the size of the logo and disabling pointer events on it */
 .App-logo {
   height: 40vmin;
-  pointer-events: none;
+  pointer-events: none; /* Makes the logo non-interactive */
 }
 
+/* Adding a spinning animation to the logo when motion preferences are normal */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 20s linear; /* Spins the logo endlessly */
   }
 }
 
+/* Setting up the header section of the app to take full screen height, center content, and stack elements vertically */
 .App-header {
-  background-color: #282c34;
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Defining the main font for the body and setting background and text colors */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f4f9; /* Light grey background */
+  color: #333; /* Dark grey text */
+}
+
+/* Adding a blurred background image to the header */
+.App-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.housedigest.com/img/gallery/11-brilliant-hacks-to-make-your-kitchen-more-aesthetic/intro-1705942138.jpg');
+  background-size: cover; /* Ensures the image covers the whole area */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat;
+  filter: blur(8px); /* Adds the blur effect */
+  z-index: -1; /* Keeps the image behind other content */
+}
+
+/* Styling the main heading (title) of the app */
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 4rem; /* Large title size */
+  text-align: center;
   color: white;
+  text-shadow: 2px 2px 4px black; /* Adds shadow for contrast */
+  margin-top: 0;
+  z-index: 1; /* Ensures it stays above the blurred background */
+  position: relative; /* Keeps it layered above the background */
 }
 
-.App-link {
-  color: #61dafb;
+/* Styling the subtitle below the main title */
+h2.app-subtitle {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem; /* Slightly smaller than the main title */
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  margin-top: 10px; /* Adds spacing between the title and subtitle */
+  z-index: 1; /* Keeps the subtitle in front of the background */
+  position: relative;
 }
 
-@keyframes App-logo-spin {
+/* General styling for secondary headings */
+h2, h3 {
+  color: #333; /* Dark grey text */
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px; /* Adds space below headings */
+}
+
+/* Basic styling for buttons */
+button {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Changes cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover effect for buttons to change color and move slightly */
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Styling for file and text input elements */
+input[type="file"],
+input[type="text"] {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px; /* Rounded edges */
+  border: 1px solid #ccc; /* Light border */
+  width: 100%;
+  max-width: 400px; /* Ensures inputs don't get too wide */
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* Centers the input fields */
+}
+
+/* Removes the default list styling */
+ul {
+  padding-left: 0;
+  list-style-type: none; /* No bullet points */
+}
+
+/* Adds spacing and a border to list items */
+li {
+  margin: 10px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Light grey line between items */
+}
+
+/* Layout for the recipe list with flexible wrapping */
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers the recipe cards */
+  padding: 0;
+}
+
+/* Styling for individual recipe cards */
+.recipe-card {
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  margin: 20px;
+  padding: 10px;
+  width: 300px; /* Fixed width for cards */
+  border-radius: 10px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effects */
+  animation: fadeIn 0.5s ease-in; /* Fade-in animation for the cards */
+}
+
+/* Slight enlargement and shadow on hover for recipe cards */
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Adds rounded corners to the images inside the recipe cards */
+.recipe-card img {
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Centers and adjusts the font size of recipe titles */
+.recipe-card h4 {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Keyframes for the fade-in effect */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
+}
+
+/* Styles for the scrolling arrow that appears at the bottom */
+.scroll-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%; /* Centers the arrow horizontally */
+  transform: translateX(-50%);
+  cursor: pointer; /* Clickable cursor */
+  font-size: 3rem; /* Large size for visibility */
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  animation: bounce 2s infinite; /* Adds a bouncing animation */
+}
+
+/* Keyframes for the bounce animation of the arrow */
+@keyframes bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px); /* Moves the arrow up and down */
+  }
+}
+
+/* Styles for modal windows that appear on top of the app */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centers the modal content */
+  z-index: 1000; /* Keeps the modal on top of everything */
+  overflow-y: auto; /* Allows scrolling inside the modal */
+}
+
+/* Styling for the content inside the modal */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px; /* Ensures the modal doesn't get too wide */
+  max-height: 80vh; /* Restricts the height of the modal */
+  overflow-y: auto; /* Scrolls the content if it's too long */
+  text-align: center;
+}
+
+/* Ensures images inside the modal fit within the content area */
+.modal-content img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* Adds spacing below the modal heading */
+.modal-content h2 {
+  margin-bottom: 10px;
+}
+
+/* Aligns lists inside the modal to the left and adds spacing */
+.modal-content ul, ol {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* Styling for buttons inside the modal */
+.modal button {
+  margin: 10px;
 }
